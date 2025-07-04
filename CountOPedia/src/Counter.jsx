@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import attackImg from "./images/attack.png";
 import defenceImg from "./images/defend.png";
+//{condition && <SomeJSX />} is a common React pattern for showing something only when a condition is true.
 function Counter() {
   let [count, setCount] = useState(0);
   let [gameStatus, setGameStatus] = useState(""); //You Won!! OR You Lost!
@@ -47,7 +48,7 @@ function Counter() {
         <h1> Game Score : {count}</h1>
         <p>You win at +5 points and lose at -5 points!</p>
 
-        <h3>Game Status : {gameStatus} </h3>
+        {gameStatus.length > 0 && <h3>Game Status : {gameStatus} </h3>}
 
         <div className="col-6 col-md-3 offset-md-3">
           <img
