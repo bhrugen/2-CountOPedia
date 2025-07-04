@@ -3,6 +3,7 @@ import attackImg from "./images/attack.png";
 import defenceImg from "./images/defend.png";
 function Counter() {
   let [count, setCount] = useState(0);
+  let [gameStatus, setGameStatus] = useState(""); //You Won!! OR You Lost!
 
   function handleIncrement() {
     setCount(function (prev) {
@@ -24,6 +25,9 @@ function Counter() {
 
   function handleReset() {
     setCount(0);
+  }
+  function handleLog() {
+    console.log(count);
   }
 
   return (
@@ -68,6 +72,9 @@ function Counter() {
           <br />
           <button className="btn btn-danger m-2  w-100" onClick={handleReset}>
             Reset
+          </button>
+          <button className="btn btn-warning m-2  w-100" onClick={handleLog}>
+            Log
           </button>
         </div>
       </div>
