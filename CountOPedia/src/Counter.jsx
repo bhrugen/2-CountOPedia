@@ -7,11 +7,25 @@ function Counter() {
 
   function handleIncrement() {
     setCount(function (prev) {
-      return prev + 1;
+      const newValue = prev + 1;
+      if (newValue >= 5) {
+        setGameStatus("You Won!!");
+      } else {
+        setGameStatus("");
+      }
+      return newValue;
     });
   }
   function handleDecrement() {
-    setCount((prev) => prev - 1);
+    setCount(function (prev) {
+      const newValue = prev - 1;
+      if (newValue <= -5) {
+        setGameStatus("You Lost!!");
+      } else {
+        setGameStatus("");
+      }
+      return newValue;
+    });
   }
 
   function handleRandomPlay() {
@@ -36,7 +50,7 @@ function Counter() {
         <h1> Game Score : {count}</h1>
         <p>You win at +5 points and lose at -5 points!</p>
 
-        <h3>Game Status : </h3>
+        <h3>Game Status : {gameStatus} </h3>
 
         <div className="col-6 col-md-3 offset-md-3">
           <img
