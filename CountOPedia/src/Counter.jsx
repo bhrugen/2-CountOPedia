@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import attackImg from "./images/attack.png";
 import defenceImg from "./images/defend.png";
 function Counter() {
@@ -8,23 +8,22 @@ function Counter() {
   function handleIncrement() {
     const newValue = count + 1;
     setCount(newValue);
-
-    if (newValue >= 5) {
-      setGameStatus("You Won!!");
-    } else {
-      setGameStatus("");
-    }
   }
   function handleDecrement() {
     const newValue = count - 1;
     setCount(newValue);
+  }
 
-    if (newValue <= -5) {
+  useEffect(() => {
+    // Your side effect code here
+    if (count <= -5) {
       setGameStatus("You Lost!!");
+    } else if (count >= 5) {
+      setGameStatus("You Won!!");
     } else {
       setGameStatus("");
     }
-  }
+  }, [count]);
 
   function handleRandomPlay() {
     const playMode = Math.round(Math.random());
