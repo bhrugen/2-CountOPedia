@@ -13,6 +13,19 @@ function Counter() {
     setCount((prev) => prev - 1);
   }
 
+  function handleRandomPlay() {
+    const playMode = Math.round(Math.random());
+    if (playMode == 0) {
+      handleIncrement();
+    } else {
+      handleDecrement();
+    }
+  }
+
+  function handleReset() {
+    setCount(0);
+  }
+
   return (
     <div className="container">
       <div className="row text-white text-center ">
@@ -29,6 +42,7 @@ function Counter() {
               cursor: "pointer",
               border: "1px solid green",
             }}
+            onClick={handleIncrement}
             className="p-4 rounded"
           ></img>
         </div>
@@ -40,16 +54,22 @@ function Counter() {
               cursor: "pointer",
               border: "1px solid red",
             }}
+            onClick={handleDecrement}
             className="p-4 rounded"
           ></img>
         </div>
-
-        <button onClick={handleIncrement} className="btn btn-success m-2">
-          +1
-        </button>
-        <button onClick={handleDecrement} className="btn btn-danger m-2">
-          -1
-        </button>
+        <div className="col-12 col-md-4 offset-md-4">
+          <button
+            className="btn btn-success m-2 w-100"
+            onClick={handleRandomPlay}
+          >
+            Random Play
+          </button>
+          <br />
+          <button className="btn btn-danger m-2  w-100" onClick={handleReset}>
+            Reset
+          </button>
+        </div>
       </div>
     </div>
   );
