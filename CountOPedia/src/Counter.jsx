@@ -3,7 +3,7 @@ import attackImg from "./images/attack.png";
 import defenceImg from "./images/defend.png";
 //{condition && <SomeJSX />} is a common React pattern for showing something only when a condition is true.
 function Counter() {
-  const [gameState, setGetState] = useState({
+  const [gameState, setGameState] = useState({
     count: 0,
     gameStatus: "",
   });
@@ -12,13 +12,13 @@ function Counter() {
     const newCount = gameState.count + 1;
     const status =
       newCount >= 5 ? "You WON!!" : newCount <= -5 ? "You Lost!!" : "";
-    setGetState({ count: newCount, gameStatus: status });
+    setGameState({ count: newCount, gameStatus: status });
   }
   function handleDecrement() {
     const newCount = gameState.count - 1;
     const status =
       newCount >= 5 ? "You WON!!" : newCount <= -5 ? "You Lost!!" : "";
-    setGetState({ count: newCount, gameStatus: status });
+    setGameState({ count: newCount, gameStatus: status });
   }
 
   function handleRandomPlay() {
@@ -31,7 +31,11 @@ function Counter() {
   }
 
   function handleReset() {
-    setCount(0);
+    setGameState({ gameStatus: "", count: 0 });
+    // setGameState((prev) => ({
+    //   ...prev,
+    //   gameStatus: "",
+    // }));
   }
   function handleLog() {
     console.log(gameState.count);
