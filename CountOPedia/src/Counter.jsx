@@ -4,11 +4,14 @@ function Counter() {
   let [count, setCount] = useState(0);
 
   function handleIncrement() {
-    setCount(count + 1);
+    setCount(function (prev) {
+      return prev + 1;
+    });
+
     console.log(count);
   }
   function handleDecrement() {
-    setCount(count - 1);
+    setCount((prev) => prev - 1);
     console.log(count);
   }
 
