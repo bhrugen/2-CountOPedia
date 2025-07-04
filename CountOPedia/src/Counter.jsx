@@ -3,28 +3,23 @@ import attackImg from "./images/attack.png";
 import defenceImg from "./images/defend.png";
 //{condition && <SomeJSX />} is a common React pattern for showing something only when a condition is true.
 function Counter() {
-  let [count, setCount] = useState(0);
-  let [gameStatus, setGameStatus] = useState(""); //You Won!! OR You Lost!
+  const [gameState, setGetState] = useState({
+    count: 0,
+    gameStatus: "",
+  });
 
   function handleIncrement() {
-    const newValue = count + 1;
-    setCount(newValue);
+    const newCount = gameState.count + 1;
+    const status =
+      newCount >= 5 ? "You WON!!" : newCount <= -5 ? "You Lost!!" : "";
+    setGetState({ count: newCount, gameStatus: status });
   }
   function handleDecrement() {
-    const newValue = count - 1;
-    setCount(newValue);
+    const newCount = gameState.count - 1;
+    const status =
+      newCount >= 5 ? "You WON!!" : newCount <= -5 ? "You Lost!!" : "";
+    setGetState({ count: newCount, gameStatus: status });
   }
-
-  useEffect(() => {
-    // Your side effect code here
-    if (count <= -5) {
-      setGameStatus("You Lost!!");
-    } else if (count >= 5) {
-      setGameStatus("You Won!!");
-    } else {
-      setGameStatus("");
-    }
-  }, [count]);
 
   function handleRandomPlay() {
     const playMode = Math.round(Math.random());
@@ -39,16 +34,18 @@ function Counter() {
     setCount(0);
   }
   function handleLog() {
-    console.log(count);
+    console.log(gameState.count);
   }
 
   return (
     <div className="container">
       <div className="row text-white text-center ">
-        <h1> Game Score : {count}</h1>
+        <h1> Game Score : {gameState.count}</h1>
         <p>You win at +5 points and lose at -5 points!</p>
 
-        {gameStatus.length > 0 && <h3>Game Status : {gameStatus} </h3>}
+        {gameState.gameStatus.length > 0 && (
+          <h3>Game Status : {gameState.gameStatus} </h3>
+        )}
 
         <div className="col-6 col-md-3 offset-md-3">
           <img
